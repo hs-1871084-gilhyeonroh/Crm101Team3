@@ -4,5 +4,6 @@ public with sharing class test1 {
         String s2 = "Hello";
         String s3="bye";
         String s4 = "good bye";
+        String s5 = "good night";
     }
 }
