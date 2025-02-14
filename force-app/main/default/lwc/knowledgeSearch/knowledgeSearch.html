@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Knowledge 검색">
+        <p><strong>Selected Product:</strong> {selectedProductName}</p>
+    </lightning-card>
+
+    <!-- Knowledge 문서 결과 -->
+    <template if:true={knowledgeArticles.length}>
+        <lightning-card title="Knowledge 문서">
+            <ul>
+                <template for:each={knowledgeArticles} for:item="article">
+                    <li key={article.id} class="knowledge-item">
+                        <input type="radio" name="knowledgeRadio" value={article.id} onchange={handleKnowledgeSelection} />
+                        <label>{article.title}</label>
+                    </li>
+                </template>
+            </ul>
+        </lightning-card>
+    </template>
+
+    <!-- 검색 결과가 없을 때 메시지 표시 -->
+    <template if:false={knowledgeArticles.length}>
+        <lightning-card title="Knowledge 검색">
+            <p style="padding: 10px;">🔍 검색된 Knowledge 문서가 없습니다.</p>
+        </lightning-card>
+    </template>
+
+    <!-- 선택한 Knowledge 문서 상세 정보 -->
+    <template if:true={selectedKnowledge}>
+        <lightning-card title="Knowledge 상세 정보">
+            <p><strong>질문 (Question):</strong></p>
+            <lightning-formatted-rich-text value={selectedKnowledge.question}></lightning-formatted-rich-text>
+            <p><strong>답변 (Answer):</strong></p>
+            <lightning-formatted-rich-text value={selectedKnowledge.answer}></lightning-formatted-rich-text>
+        </lightning-card>
+    </template>
+</template>

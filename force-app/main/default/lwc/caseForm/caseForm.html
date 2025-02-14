@@ -1,0 +1,27 @@
+<template>
+    <div class="html-editor-content">
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DWU00000HkM29" method="POST">
+            <input type="hidden" name="orgid" value="00DWU00000HkM29">
+            <input type="hidden" name="retURL" value="https://your-experience-cloud.com/thank-you">
+
+            <label for="name">Contact Name</label>
+            <input id="name" maxlength="80" name="name" size="20" type="text" /><br>
+
+            <label for="email">Email</label>
+            <input id="email" maxlength="80" name="email" size="20" type="text" /><br>
+
+            <label for="phone">Phone</label>
+            <input id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
+
+            <label for="subject">Subject</label>
+            <input id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
+
+            <label for="description">Description</label>
+            <textarea name="description"></textarea><br>
+
+            <!-- <label for="accountId">AccountName1</label> -->
+            <input  id="00NWU00000CLJaD" maxlength="20" name="00NWU00000CLJaD" size="20" type="hidden" value={accountId}/><br>
+            <input type="submit" name="submit">
+        </form>
+    </div>
+</template>

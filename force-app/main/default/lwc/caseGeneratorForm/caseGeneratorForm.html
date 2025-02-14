@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Create a Case">
+        <div class="slds-p-around_medium">
+            <!-- Subject 입력 필드 -->
+            <lightning-input name="Subject" label="Subject" onchange={handleChange}></lightning-input>
+
+            <!-- Reason을 picklist로 나타내기 위해 lightning-combobox 사용 -->
+            <lightning-combobox 
+                name="Reason" 
+                label="Reason" 
+                value={caseRecord.Reason}
+                options={reasonOptions} 
+                onchange={handleChange}>
+            </lightning-combobox>
+
+            <!-- Description 입력 필드 -->
+            <lightning-textarea name="Description" label="Description" onchange={handleChange}></lightning-textarea>
+
+            <!-- Submit 버튼 -->
+            <lightning-button label="Submit" variant="brand" onclick={handleSubmit}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Customer Purchased Products">
+        <div class="slds-m-around_medium">
+            <template if:true={accountId}>
+                <p><strong>Account ID:</strong> {accountId}</p>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Product Name</th>
+                            <th>Product Family</th>
+                            <th>Total Quantity</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={products} for:item="product">
+                            <tr key={product.id}>
+                                <td>
+                                    <input type="radio" name="productRadio" value={product.id} onchange={handleProductSelection} />
+                                </td>
+                                <td>{product.name}</td>
+                                <td>{product.category}</td>
+                                <td>{product.totalQuantity}</td>
+                                <td>{product.totalRevenue}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+        </div>
+    </lightning-card>
+
+    
+    <!-- <c-knowledge-search selected-product-name={selectedProductName}></c-knowledge-search> -->
+</template>

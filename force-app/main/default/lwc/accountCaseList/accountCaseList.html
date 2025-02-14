@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Account Cases">
+        <template if:true={cases}>
+            <ul>
+                <template for:each={cases} for:item="caseItem">
+                    <li key={caseItem.Id}>
+                        <p>Case Number: {caseItem.CaseNumber}</p>
+                        <p>Subject: {caseItem.Subject}</p>
+                        <p>Status: {caseItem.Status}</p>
+                        <p>Priority: {caseItem.Priority}</p>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:true={error}>
+            <p>{error}</p>
+        </template>
+    </lightning-card>
+</template>
