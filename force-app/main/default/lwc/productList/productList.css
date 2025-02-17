@@ -1,20 +1,74 @@
-.custom-table {
-    width: 100%;
-    border-collapse: collapse;
+/* 📌 전체 페이드 효과 */
+.fade-container {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.custom-table th, .custom-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.fade-out {
+    opacity: 0;
 }
 
-.custom-table tr:hover {
-    background-color: #f2f2f2;
+/* 📌 전체 그리드 스타일 */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 📌 개별 카드 디자인 */
+.product-card {
+    width: 250px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    border: 2px solid transparent;
 }
 
-.selected-row {
-    background-color: #dff0d8 !important; /* 연한 초록색 배경 */
+/* 📌 카드 Hover 효과 */
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* 📌 선택된 카드 강조 */
+.product-card.selected {
+    border-color: #007bff;
+    background-color: #e3f2fd;
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* 📌 제품 정보 */
+.product-header {
+    font-size: 1.2em;
     font-weight: bold;
+    color: #007bff;
+}
+
+.product-category {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.product-details {
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* 📌 반응형 (모바일 최적화) */
+@media (max-width: 768px) {
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+    }
 }

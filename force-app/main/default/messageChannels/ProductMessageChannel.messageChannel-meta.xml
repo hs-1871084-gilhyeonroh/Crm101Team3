@@ -3,6 +3,9 @@
     <masterLabel>Product Message Channel</masterLabel>
     <isExposed>true</isExposed>
     <lightningMessageFields>
+        <fieldName>accountId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
         <fieldName>productId</fieldName>
     </lightningMessageFields>
     <lightningMessageFields>

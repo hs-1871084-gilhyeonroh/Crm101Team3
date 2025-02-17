@@ -1,0 +1,150 @@
+/* 📌 Floating Button (원 버튼) */
+.floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.floating-button {
+    width: 60px;
+    height: 60px;
+    background-color: #0070d2;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+    /* 🌟 버튼이 부드럽게 떠오르며 살아있는 느낌의 애니메이션 적용 */
+    animation: floating 2.5s ease-in-out infinite, glow 1.5s infinite alternate;
+}
+
+/* 📌 Hover 효과 */
+.floating-button:hover {
+    background-color: #005fb2;
+    transform: scale(1.1);
+}
+
+/* 📌 모달 배경 */
+.custom-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* 📌 모달 컨테이너 */
+.custom-modal-container {
+    max-width: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(102, 102, 102, 0.6);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 📌 모달 헤더 (X 버튼 제거) */
+.custom-modal-header {
+    background: #0070d2;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 📌 모달 내용 (위/아래 여백 제거) */
+.custom-modal-content {
+    padding: 15px 20px;
+}
+
+/* 📌 입력 필드 */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+    border-color: #0070d2;
+    box-shadow: 0 0 5px rgba(0, 112, 210, 0.5);
+}
+
+/* 📌 버튼 그룹 */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.submit-button {
+    background: #0070d2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+    background: #005fb2;
+}
+
+.close-button {
+    background: #ccc;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-button:hover {
+    background: #999;
+}
+
+/* 📌 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* 🔆 버튼이 빛나는 느낌의 애니메이션 */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(0, 112, 210, 0.5);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(0, 112, 210, 0.9);
+    }
+}

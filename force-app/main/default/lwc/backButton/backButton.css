@@ -1,0 +1,29 @@
+
+/* 📌 '이전 페이지로' 버튼 스타일 */
+.circle-back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;  /* ✅ 좌측 하단 배치 */
+    z-index: 999;
+}
+
+.back-button {
+    width: 60px;
+    height: 60px;
+    background: #0070d2;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50%; /* ✅ 원형 만들기 */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 📌 마우스 호버 시 버튼 효과 */
+.back-button:hover {
+    background-color: #005fb2;
+    transform: scale(1.1);
+}

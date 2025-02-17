@@ -1,27 +1,63 @@
 <template>
-    <div class="html-editor-content">
-        <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DWU00000HkM29" method="POST">
-            <input type="hidden" name="orgid" value="00DWU00000HkM29">
-            <input type="hidden" name="retURL" value="https://your-experience-cloud.com/thank-you">
-
-            <label for="name">Contact Name</label>
-            <input id="name" maxlength="80" name="name" size="20" type="text" /><br>
-
-            <label for="email">Email</label>
-            <input id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-            <label for="phone">Phone</label>
-            <input id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-
-            <label for="subject">Subject</label>
-            <input id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
-
-            <label for="description">Description</label>
-            <textarea name="description"></textarea><br>
-
-            <!-- <label for="accountId">AccountName1</label> -->
-            <input  id="00NWU00000CLJaD" maxlength="20" name="00NWU00000CLJaD" size="20" type="hidden" value={accountId}/><br>
-            <input type="submit" name="submit">
-        </form>
+    <!-- 📩 원 버튼 (Floating Action Button) -->
+    <div class="floating-container">
+        <button class="floating-button" onclick={openModal}>📩</button>
     </div>
+
+    <!-- 📌 모달 (팝업) -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" class="slds-modal slds-fade-in-open custom-modal">
+            <div class="slds-modal__container custom-modal-container">
+                <!-- 📌 모달 헤더 -->
+                <header class="slds-modal__header custom-modal-header">
+                    <h2 class="modal-title">🚀 문의하기 (Web-to-Case)</h2>
+                </header>
+
+                <!-- 📌 모달 내용 -->
+                <div class="slds-modal__content slds-p-around_medium custom-modal-content">
+                    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DWU00000HkM29" 
+                        method="POST">
+                        
+                        <input type="hidden" name="orgid" value="00DWU00000HkM29">
+                        <input type="hidden" name="retURL" value={retURL}>
+
+                        <div class="form-group">
+                            <label for="name">📌 Contact Name</label>
+                            <input id="name" maxlength="80" name="name" type="text" required class="input-field"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">📩 Email</label>
+                            <input id="email" maxlength="80" name="email" type="email" required class="input-field"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">📞 Phone</label>
+                            <input id="phone" maxlength="40" name="phone" type="tel" class="input-field"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">📢 Subject</label>
+                            <input id="subject" maxlength="80" name="subject" type="text" required class="input-field"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">📝 Description</label>
+                            <textarea name="description" required class="textarea-field"></textarea>
+                        </div>
+
+                        <input type="hidden" name="00NWU00000CLJaD" value={accountId} />
+
+                        <!-- 📌 버튼 그룹 -->
+                        <div class="button-group">
+                            <button type="submit" class="submit-button">📩 제출하기</button>
+                            <button type="button" class="close-button" onclick={closeModal}>닫기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- 📌 모달 배경 -->
+        <div class="slds-backdrop slds-backdrop_open custom-backdrop" onclick={closeModal}></div>
+    </template>
 </template>

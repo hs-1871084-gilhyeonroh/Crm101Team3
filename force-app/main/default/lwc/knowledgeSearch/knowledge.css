@@ -1,0 +1,106 @@
+/* 📌 전체 리스트 스타일 */
+.knowledge-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* 📌 개별 Knowledge 카드 디자인 */
+.knowledge-card {
+    width: 300px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1);
+    opacity: 0.9;
+}
+
+/* 📌 카드 Hover 효과 */
+.knowledge-card:hover {
+    background: linear-gradient(135deg, #e6f7ff, #d9e6ff);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
+/* 📌 선택된 카드 강조 */
+.knowledge-card.selected {
+    background: linear-gradient(135deg, #0070d2, #005fb2);
+    color: white;
+    border: 2px solid #003f87;
+    box-shadow: 0 8px 20px rgba(0, 112, 210, 0.4);
+    transform: scale(1.07);
+}
+
+/* 📌 카드 내부 텍스트 스타일 */
+.knowledge-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.knowledge-summary {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* 📌 선택된 제품 정보 */
+.selected-product {
+    font-size: 16px;
+    color: #0070d2;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 📌 질문 / 답변 강조 */
+.question-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.answer-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #5cb85c;
+}
+
+/* 📌 검색 결과 없을 때 */
+.no-results {
+    padding: 15px;
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+}
+
+/* 📌 애니메이션 추가 */
+.knowledge-card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

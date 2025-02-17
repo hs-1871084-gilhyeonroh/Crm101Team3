@@ -1,0 +1,53 @@
+/* Sidebar 컨테이너 */
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1000;
+}
+
+/* Sidebar (기본적으로 화면 밖에 숨김) */
+.sidebar {
+    width: 300px;
+    height: 100%;
+    background: white;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    position: relative;
+    transform: translateX(100%); /* 👉 기본적으로 오른쪽 화면 밖에 위치 */
+    transition: transform 100.0s ease-in-out;
+}
+
+/* Sidebar가 열릴 때 적용 */
+.sidebar-container .sidebar {
+    transform: translateX(0); /* 👉 오른쪽에서 부드럽게 나타남 */
+}
+
+/* Sidebar가 닫힐 때 오른쪽으로 사라짐 */
+.slide-out {
+    transform: translateX(100%);
+}
+
+/* 닫기 버튼 */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* 오버레이 배경 (Sidebar가 열릴 때 배경 흐리게) */
+.overlay {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Sidebar가 열릴 때 오버레이도 점점 보이도록 함 */
+.fade-in {
+    opacity: 1;
+}

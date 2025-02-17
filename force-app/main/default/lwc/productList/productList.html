@@ -1,36 +1,38 @@
 <template>
-    <lightning-card title="Customer Purchased Products">
-        <div class="slds-m-around_medium">
-            <template if:true={accountId}>
-                <p><strong>Account ID:</strong> {accountId}</p>
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>Select</th>
-                            <th>Product Name</th>
-                            <th>Product Family</th>
-                            <th>Total Quantity</th>
-                            <th>Total Revenue</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+    <div class="fade-container" if:true={showContent}>
+        <lightning-card title="🚀 고객이 구매한 제품">
+            <div class="slds-m-around_medium">
+                <template if:true={accountId}>
+                    <p class="account-info"><strong>Account ID:</strong> {accountId}</p>
+                    
+                    <div class="product-grid">
                         <template for:each={products} for:item="product">
-                            <tr key={product.id}>
-                                <td>
-                                    <input type="radio" name="productRadio" value={product.id} onchange={handleProductSelection} />
-                                </td>
-                                <td>{product.name}</td>
-                                <td>{product.category}</td>
-                                <td>{product.totalQuantity}</td>
-                                <td>{product.totalRevenue}</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-            </template>
-        </div>
-    </lightning-card>
+                            <div key={product.id} 
+                                class="product-card" 
+                                data-id={product.id} 
+                                onclick={handleProductSelection}>
 
-    
-    <!-- <c-knowledge-search selected-product-name={selectedProductName}></c-knowledge-search> -->
+                                <div class="product-header">
+                                    <p class="product-name">{product.name}</p>
+                                    <p class="product-category">📂 {product.category}</p>
+                                </div>
+                                <div class="product-details">
+                                    <p>📦 <strong>수량:</strong> {product.totalQuantity} 개</p>
+                                    <p>💰 <strong>매출:</strong> {product.totalRevenue} 원</p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <!-- 🔍 Knowledge 검색 버튼 -->
+            <div class="slds-m-around_medium slds-align_absolute-center">
+                <lightning-button label="🔍 Knowledge 검색하기" 
+                    variant="brand" 
+                    onclick={navigateToKnowledgeSearch}>
+                </lightning-button>
+            </div>
+        </lightning-card>
+    </div>
 </template>

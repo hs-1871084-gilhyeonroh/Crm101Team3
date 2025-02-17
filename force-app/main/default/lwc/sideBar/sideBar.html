@@ -1,0 +1,17 @@
+<template>
+    <!-- Sidebar 컨테이너 (애니메이션 적용) -->
+    <div class="sidebar-container" if:true={isSidebarOpen}>
+        <div class="sidebar">
+            <lightning-button-icon icon-name="utility:close" alternative-text="Close Sidebar"
+                class="close-button" onclick={closeSidebar}></lightning-button-icon>
+            <h2>📌 Sidebar 메뉴</h2>
+            <ul>
+                <li><a href="#">🏠 Home</a></li>
+                <li><a href="#">📄 About</a></li>
+                <li><a href="#">📞 Contact</a></li>
+            </ul>
+        </div>
+        <!-- Sidebar 바깥 영역 (클릭 시 닫힘) -->
+        <div class="overlay fade-in" onclick={closeSidebar}></div>
+    </div>
+</template>

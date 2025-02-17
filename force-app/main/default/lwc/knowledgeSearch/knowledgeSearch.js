@@ -1,35 +1,31 @@
-import { LightningElement, track, wire } from 'lwc';
-import { subscribe, MessageContext } from 'lightning/messageService';
-import PRODUCT_MESSAGE from '@salesforce/messageChannel/ProductMessageChannel__c';
+import { LightningElement, track } from 'lwc';
 import getKnowledgeByProductAndSearch from '@salesforce/apex/ProductKnowledgeFetcher.getKnowledgeByProductAndSearch';
 
 export default class KnowledgeSearch extends LightningElement {
+    @track accountId = ''; 
     @track selectedProductName = '';
     @track selectedProductCategory = '';
     @track knowledgeArticles = [];
-    @track selectedKnowledge = null; // 선택한 Knowledge 문서
-
-    @wire(MessageContext) messageContext;
+    @track selectedKnowledge = null;
 
     connectedCallback() {
+        // 🔹 `sessionStorage`에서 데이터 불러오기
+        this.loadSessionData();
+        console.log('🔹 Loaded from sessionStorage:', this.selectedProductCategory);
 
-        
-        this.subscription = subscribe(this.messageContext, PRODUCT_MESSAGE, (message) => {
-
-            if (this.selectedProductCategory !== message.productCategory) {
-                this.selectedKnowledge = null; // ✅ 선택된 Knowledge 문서 초기화
-            }
-            
-            this.selectedProductName = message.productName;
-            this.selectedProductCategory = message.productCategory;
-            console.log('🔹 Received Product in KnowledgeSearch:', this.selectedProductName);
-            console.log('🔹 Received Category in KnowledgeSearch:', this.selectedProductCategory);
-
-            // 제품 선택 후 데이터 로드
+        if (this.selectedProductCategory) {
             this.loadKnowledgeArticles();
-        });
+        }
     }
 
+    /** 🔹 `sessionStorage`에서 값 불러오는 함수 */
+    loadSessionData() {
+        this.accountId = sessionStorage.getItem('accountId') || '';
+        this.selectedProductName = sessionStorage.getItem('productName') || '';
+        this.selectedProductCategory = sessionStorage.getItem('productCategory') || '';
+    }
+
+    /** 🔹 Knowledge 데이터 가져오기 */
     async loadKnowledgeArticles() {
         console.log('🔹 Calling Apex with:', this.selectedProductCategory);
 
@@ -40,22 +36,21 @@ export default class KnowledgeSearch extends LightningElement {
         }
 
         try {
-            const data = await getKnowledgeByProductAndSearch({
-                productName: this.selectedProductCategory
-            });
+            const data = await getKnowledgeByProductAndSearch({ productName: this.selectedProductCategory });
 
-            if (data) {
+            if (data && data.length > 0) {
                 console.log('✅ Apex Response:', data);
                 this.knowledgeArticles = data.map(article => ({
                     id: article.Id,
                     title: article.Title,
                     url: '/knowledge/' + article.UrlName,
                     summary: article.Summary,
-                    question: article.Question__c || '질문이 없습니다.', // ✅ null 값 처리
-                    answer: article.Answer__c || '답변이 없습니다.' // ✅ null 값 처리
+                    question: article.Question__c || '❓ 질문이 없습니다.',
+                    answer: article.Answer__c || '💡 답변이 없습니다.'
                 }));
             } else {
                 this.knowledgeArticles = [];
+                console.warn('⚠️ No Knowledge Articles Found.');
             }
         } catch (error) {
             console.error('❌ Error fetching knowledge:', error);
@@ -63,9 +58,17 @@ export default class KnowledgeSearch extends LightningElement {
         }
     }
 
+    /** 🔹 Knowledge 문서 선택 이벤트 */
     handleKnowledgeSelection(event) {
-        const selectedId = event.target.value;
+        const selectedId = event.currentTarget.dataset.id;
         this.selectedKnowledge = this.knowledgeArticles.find(article => article.id === selectedId);
+
+        // 🔹 선택된 카드 강조 (CSS 적용)
+        this.template.querySelectorAll('.knowledge-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        event.currentTarget.classList.add('selected');
+
         console.log('🔹 Selected Knowledge:', this.selectedKnowledge);
     }
 }
