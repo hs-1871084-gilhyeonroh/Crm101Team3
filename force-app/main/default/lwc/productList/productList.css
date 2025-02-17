@@ -1,8 +1,5 @@
 /* 📌 전체 페이드 효과 */
-.fade-container {
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
+.fade-container { opacity: 1; transition: opacity 0.5s ease-in-out; /* :반짝임: 내부에서만 스크롤 가능하도록 추가 */max-height: 500px; /* 원하는 높이 설정 */overflow-y: auto; overflow-x: hidden; border: 1px solid #ddd; /* 선택적으로 테두리 추가 */padding: 10px; }
 
 .fade-out {
     opacity: 0;
