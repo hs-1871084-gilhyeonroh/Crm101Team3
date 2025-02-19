@@ -8,6 +8,7 @@ export default class QRCodeComponent extends LightningElement {
 
     connectedCallback() {
         this.loadQRCodeJS();
+        console.log(this.recordId);
     }
 
     loadQRCodeJS() {

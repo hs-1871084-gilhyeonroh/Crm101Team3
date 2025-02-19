@@ -1,0 +1,21 @@
+.progress-container {
+    position: fixed;
+    top: 10px; /* 상단에서 10px 아래 */
+    left: 50%; /* 가로 중앙 */
+    transform: translateX(-50%); /* 정확한 중앙 정렬 */
+    width: 80%;
+    height: 20px;
+    background: #ddd;
+    z-index: 1000;
+    border: none;
+    border-radius: 20px;
+}
+
+.progress-bar {
+    height: 20px;
+    background: linear-gradient(to right, #ff5733, #ffbd69);
+    width: 0%;
+    border: none;
+    border-radius: 20px;
+    transition: width 0.2s ease-out;
+}

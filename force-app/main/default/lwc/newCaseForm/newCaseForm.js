@@ -2,7 +2,7 @@ import { LightningElement, track, wire } from 'lwc';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import PRODUCT_MESSAGE from '@salesforce/messageChannel/ProductMessageChannel__c';
 
-export default class FloatingButton extends LightningElement {
+export default class NewCaseForm extends LightningElement {
     @track isModalOpen = false;
     @track accountId = '';
     @track productId = '';
@@ -14,6 +14,7 @@ export default class FloatingButton extends LightningElement {
     messageContext;
     // 🔹 세션에서 accountId 불러오기
     connectedCallback() {
+        
         const params = new URLSearchParams(window.location.search);
         this.accountId = params.get('accountId') || '';
         this.retURL += this.accountId;

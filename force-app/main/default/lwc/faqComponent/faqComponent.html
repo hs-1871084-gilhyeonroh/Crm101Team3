@@ -1,0 +1,19 @@
+<template>
+    <div class="faq-container">
+        <template for:each={faqList} for:item="faq">
+            <div key={faq.id} class="faq-item">
+                <!-- 🔹 질문 (클릭 시 토글) -->
+                <div class="faq-question" onclick={toggleAnswer} data-id={faq.id}>
+                    <span class="question-label">Q</span>
+                    <strong>{faq.question}</strong>
+                </div>
+                
+                <!-- 🔹 답변 (애니메이션 포함) -->
+                <div if:true={faq.expanded} class="faq-answer">
+                    <span class="answer-label">A</span>
+                    <lightning-formatted-rich-text value={faq.answer}></lightning-formatted-rich-text>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

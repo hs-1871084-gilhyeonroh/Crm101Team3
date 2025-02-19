@@ -1,40 +1,40 @@
 <template>
-    <lightning-card title="📚 Knowledge 검색">
-        <p class="selected-product">
-            <strong>🔍 Selected Product:</strong> {selectedProductName}
-        </p>
-    </lightning-card>
-
-    <!-- 📌 Knowledge 문서 결과 -->
-    <template if:true={knowledgeArticles.length}>
-        <lightning-card title="📜 관련 Knowledge 문서">
-            <ul class="knowledge-list">
+    <div class="knowledge-all-container">
+        <!-- 📌 FAQ 스타일 Knowledge 문서 -->
+        <template if:true={knowledgeArticles.length}>
+            <div class="knowledge-container">
+                <div title="📚 Knowledge 검색">
+                    <p class="selected-product">
+                        <strong>🔍 선택하신 제품:</strong> {selectedProductName}
+                    </p>
+                </div>
                 <template for:each={knowledgeArticles} for:item="article">
-                    <li key={article.id} data-id={article.id} class="knowledge-card" onclick={handleKnowledgeSelection}>
-                        <div class="card-content">
-                            <p class="knowledge-title">{article.title}</p>
-                            <p class="knowledge-summary">{article.summary}</p>
+                    <div key={article.id} class="faq-item">
+                        <!-- 🔹 질문 (클릭 시 토글) -->
+                        <div class="faq-question" onclick={toggleKnowledge} data-id={article.id}>
+                            <span class="question-label">K</span>
+                            <strong>{article.title}</strong>
                         </div>
-                    </li>
+
+                        <!-- 🔹 답변 (애니메이션 적용) -->
+                        <div class={article.answerClass}>
+                            <div class="faq-answer">
+                                <span class="answer-label-one">Q</span>
+                                <lightning-formatted-rich-text value={article.question}></lightning-formatted-rich-text>
+                                <span class="answer-label-two">A</span>
+                                <lightning-formatted-rich-text value={article.answer}></lightning-formatted-rich-text>
+                            </div>
+                        </div>
+                    </div>
                 </template>
-            </ul>
-        </lightning-card>
-    </template>
+            </div>
+        </template>
 
-    <!-- 📌 검색 결과가 없을 때 메시지 표시 -->
-    <template if:false={knowledgeArticles.length}>
-        <lightning-card title="📖 Knowledge 검색">
-            <p class="no-results">⚠️ 검색된 Knowledge 문서가 없습니다.</p>
-        </lightning-card>
-    </template>
-
-    <!-- 📌 선택한 Knowledge 문서 상세 정보 -->
-    <template if:true={selectedKnowledge}>
-        <lightning-card title="📖 Knowledge 상세 정보">
-            <p class="question-label"><strong>❓ 질문:</strong></p>
-            <lightning-formatted-rich-text value={selectedKnowledge.question}></lightning-formatted-rich-text>
-            <p class="answer-label"><strong>✅ 답변:</strong></p>
-            <lightning-formatted-rich-text value={selectedKnowledge.answer}></lightning-formatted-rich-text>
-        </lightning-card>
-    </template>
+        <!-- 📌 검색 결과가 없을 때 메시지 표시 -->
+        <template if:false={knowledgeArticles.length}>
+            <lightning-card title="📖 Knowledge 검색">
+                <p class="no-results">⚠️ 검색된 Knowledge 문서가 없습니다.</p>
+            </lightning-card>
+        </template>
+    </div>
 </template>
