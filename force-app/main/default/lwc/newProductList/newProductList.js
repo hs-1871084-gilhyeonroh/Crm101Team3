@@ -29,6 +29,8 @@ export default class ProductList extends LightningElement {
         if (this.accountId) {
             this.loadProducts();
         }
+
+       
     }
 
     @wire(getAccountName, { accountId: '$accountId' })
@@ -91,12 +93,15 @@ export default class ProductList extends LightningElement {
     
         // 🔹 현재 선택된 제품 카드에 'selected' 클래스 추가
         event.currentTarget.classList.add('selected');
+
+        
     
         // 🔹 LMS 메시지 발행 (선택된 제품 정보 전송)
         const message = {
             productId: this.selectedProductId,
             productName: this.selectedProductName,
-            productCategory: this.selectedProductCategory  
+            productCategory: this.selectedProductCategory,
+            progressValue: 66  
         };
         publish(this.messageContext, PRODUCT_MESSAGE, message);
     

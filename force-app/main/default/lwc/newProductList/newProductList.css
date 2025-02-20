@@ -99,7 +99,7 @@
 /* 🔹 문구가 나타나는 상태 */
 .fade-in-text.show {
     opacity: 1;
-    transform: translateY(60px);
+    transform: translateY(85px);
 }
 
 .knowledge-wrapper {
@@ -120,6 +120,7 @@
     opacity: 1;
     transform: translateY(0);
 }
+
 
 
 

@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire} from 'lwc';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import PRODUCT_MESSAGE from '@salesforce/messageChannel/ProductMessageChannel__c';
 import getKnowledgeByProductAndSearch from '@salesforce/apex/ProductKnowledgeFetcher.getKnowledgeByProductAndSearch';
@@ -10,21 +10,23 @@ export default class KnowledgeSearch extends LightningElement {
     @track knowledgeArticles = [];
     @track selectedKnowledge = null;
 
+
     @wire(MessageContext) messageContext;
 
+
     connectedCallback() {
-        this.subscription = subscribe(this.messageContext, PRODUCT_MESSAGE, (message) => {
-            if (this.selectedProductCategory !== message.productCategory) {
-                this.selectedKnowledge = null;
-            }
-
-            this.selectedProductId = message.productId;
-            this.selectedProductName = message.productName;
-            this.selectedProductCategory = message.productCategory;
-            console.log('🔹 Received Product in KnowledgeSearch:', this.selectedProductName);
-
-            this.loadKnowledgeArticles();
-        });
+            this.subscription = subscribe(this.messageContext, PRODUCT_MESSAGE, (message) => {
+                if (this.selectedProductCategory !== message.productCategory) {
+                    this.selectedKnowledge = null;
+                }
+    
+                this.selectedProductId = message.productId;
+                this.selectedProductName = message.productName;
+                this.selectedProductCategory = message.productCategory;
+                console.log('🔹 Received Product in KnowledgeSearch:', this.selectedProductName);
+    
+                this.loadKnowledgeArticles();
+            });
     }
 
     /** 🔹 Knowledge 데이터 가져오기 */
@@ -36,7 +38,10 @@ export default class KnowledgeSearch extends LightningElement {
         }
 
         try {
-            const data = await getKnowledgeByProductAndSearch({ productName: this.selectedProductCategory });
+            const data = await getKnowledgeByProductAndSearch({ 
+                productName: this.selectedProductCategory,
+                rank: 1 
+            });
 
             if (data && data.length > 0) {
                 console.log('✅ Knowledge Data:', data);

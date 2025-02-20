@@ -1,0 +1,25 @@
+.button-container {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 10px; /* 버튼 사이 간격 */
+    margin-top: 20px;
+}
+
+/* 버튼 스타일 */
+.action-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #5d4534; /* 따뜻한 나무색 */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 버튼 Hover 효과 */
+.action-button:hover {
+    background-color: #8b5a2b; /* 더 진한 황토색 */
+    transform: scale(1.05);
+}

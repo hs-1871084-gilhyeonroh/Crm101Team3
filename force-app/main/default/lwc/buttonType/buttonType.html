@@ -1,0 +1,12 @@
+<template>
+    <div class="button-container">
+        <button class="action-button" onclick={productButtonClick} hidden={selectHidden}>제품 질문</button>
+        <button class="action-button" onclick={generalButtonClick} hidden={selectHidden}>일반 질문문</button>
+    </div>
+    <div hidden={productSelectHidden}>
+        <c-new-product-list></c-new-product-list>
+    </div>
+    <div hidden={generalSelectHidden}>
+        <c-general-knowledge-search></c-general-knowledge-search>
+    </div>
+</template>

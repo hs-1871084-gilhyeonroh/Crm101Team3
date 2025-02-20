@@ -14,4 +14,7 @@
     <lightningMessageFields>
         <fieldName>productCategory</fieldName>
     </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>progressValue</fieldName>
+    </lightningMessageFields>
 </LightningMessageChannel>

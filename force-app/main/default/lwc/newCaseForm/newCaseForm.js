@@ -1,11 +1,13 @@
 import { LightningElement, track, wire } from 'lwc';
-import { subscribe, MessageContext } from 'lightning/messageService';
+import { publish, subscribe, MessageContext } from 'lightning/messageService';
 import PRODUCT_MESSAGE from '@salesforce/messageChannel/ProductMessageChannel__c';
 
 export default class NewCaseForm extends LightningElement {
     @track isModalOpen = false;
     @track accountId = '';
     @track productId = '';
+    @track productName = '';
+    @track productCategory = '';
     @track retURL = 'https://your-experience-cloud.com/thank-you';
     @track caseRecordType = ''; // ✅ 기본값 (Cafe)
     subscription = null;
@@ -25,6 +27,8 @@ export default class NewCaseForm extends LightningElement {
             this.subscription = subscribe(this.messageContext, PRODUCT_MESSAGE, (message) => {
                 console.log('🔹 Received Product Category:', message.productCategory);
                 this.productId=message.productId;
+                this.productName=message.productName;
+                this.productCategory=message.productCategory;
                 console.log(message.productId);
                 if (message.productCategory === '커피트럭') {
                     this.caseRecordType = '012Qy000005M7RN'; // ✅ Cafe의 Record Type ID
@@ -41,6 +45,12 @@ export default class NewCaseForm extends LightningElement {
     // 🔹 모달 열기
     openModal() {
         this.isModalOpen = true;
+        publish(this.messageContext, PRODUCT_MESSAGE, {
+            productId: this.productId,
+            productName: this.productName,
+            productCategory: this.productCategory,
+            progressValue: 100
+        });
     }
 
     // 🔹 모달 닫기
